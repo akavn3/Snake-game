@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Snake Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            touch-action: none;
+            overflow: hidden;
+        }
+
+        .game-container {
+            position: relative;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 20px;
+        }
+
+        #gameCanvas {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            touch-action: none;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2em;
+            color: #4CAF50;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .scores {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .score-box {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2em;
+            color: #fff;
+            background: rgba(76, 175, 80, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        #highScore {
+            background: rgba(255, 193, 7, 0.2);
+            border-color: rgba(255, 193, 7, 0.3);
+        }
+
+        #instructions {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 400px;
+            line-height: 1.4;
+        }
+
+        #enableSound {
+            font-family: 'Roboto', sans-serif;
+            padding: 12px 24px;
+            font-size: 1em;
+            margin: 15px 0;
+            cursor: pointer;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        #enableSound:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        #enableSound:active {
+            transform: translateY(0);
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9em;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .key {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7em;
+        }
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 1.5em;
+            }
+            
+            .scores {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .score-box {
+                font-size: 1em;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1 class="title">SNAKE GAME</h1>
+            <div class="scores">
+                <div id="score" class="score-box">Score: 0</div>
+                <div id="highScore" class="score-box">Best: 0</div>
+            </div>
+        </div>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <button id="enableSound">🔊 Enable Sound</button>
+        <div id="instructions">Use arrow keys or swipe to control the snake. Collect food to grow longer and earn points!</div>
+        <div class="controls">
+            <div class="control-group">
+                <span>Desktop:</span>
+                <span class="key">↑</span>
+                <span class="key">↓</span>
+                <span class="key">←</span>
+                <span class="key">→</span>
+            </div>
+            <div class="control-group">
+                <span>Mobile:</span>
+                <span>Swipe in any direction</span>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
